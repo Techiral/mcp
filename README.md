@@ -5,7 +5,7 @@
 ```mermaid
 flowchart LR
     User --> Client
-    Client --> AI[AI Processing\nGemini + LangChain]
+    Client --> AI[AI Processing: Gemini + LangChain]
     Client --> Terminal[Terminal Server]
     Client --> Filesystem[Filesystem Server]
     Client --> Memory[Memory Server]
@@ -32,16 +32,16 @@ flowchart TD
     Root --> Workspace[workspace/]
     
     Clients --> ClientDir[mcp-client/]
-    ClientDir --> Main[main.py]
-    ClientDir --> LangChain[langchain_mcp_client_wconfig.py]
-    ClientDir --> Config[theailanguage_config.json]
-    ClientDir --> Env[.env]
+    ClientDir --> Main["main.py"]
+    ClientDir --> LangChain["langchain_mcp_client_wconfig.py"]
+    ClientDir --> Config["theailanguage_config.json"]
+    ClientDir --> Env[".env"]
     
-    Servers --> Terminal[terminal_server/]
-    Terminal --> TerminalFile[terminal_server.py]
+    Servers --> Terminal["terminal_server/"]
+    Terminal --> TerminalFile["terminal_server.py"]
     
-    Workspace --> Memory[memory.json]
-    Workspace --> Notes[notes.txt]
+    Workspace --> Memory["memory.json"]
+    Workspace --> Notes["notes.txt"]
 ```
 
 **Key Files:**
