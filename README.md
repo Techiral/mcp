@@ -116,17 +116,17 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Input[User Input] --> Client
-    Client --> Decision{Request Type?}
-    Decision -->|Command| Terminal
-    Decision -->|File| Filesystem
-    Decision -->|Memory| Storage
-    Decision -->|AI| Gemini
-    Terminal --> Response
-    Filesystem --> Response
-    Storage --> Response
-    Gemini --> Response
-    Response --> Output[User Output]
+    A[User Input] --> B[Client]
+    B --> C{Type?}
+    C -->|Command| D[Terminal]
+    C -->|File| E[Filesystem]
+    C -->|Memory| F[Storage]
+    C -->|AI| G[Gemini]
+    D --> H[Response]
+    E --> H
+    F --> H
+    G --> H
+    H --> I[Output]
 ```
 
 ### Main Client Files:
