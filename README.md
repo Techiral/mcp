@@ -14,13 +14,13 @@ MCP helps build agents and complex workflows on top of LLMs by providing:
 
 ```mermaid
 flowchart LR
-    Host[MCP Host] --> Client[MCP Client]
-    Client --> ServerA[Terminal Server]
-    Client --> ServerB[Filesystem Server]
-    Client --> ServerC[Memory Server]
-    ServerA --> DataA[Local Data]
-    ServerB --> DataB[Local Files]
-    ServerC --> APIC[Remote APIs]
+    A[MCP Host] --> B[MCP Client]
+    B --> C[Terminal]
+    B --> D[Filesystem]
+    B --> E[Memory]
+    C --> F[Local Data]
+    D --> G[Local Files]
+    E --> H[Remote APIs]
 ```
 
 1. **MCP Hosts**: Applications (like Claude Desktop, IDEs) that need AI context
