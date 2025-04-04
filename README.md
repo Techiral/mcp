@@ -38,10 +38,10 @@ flowchart LR
 ```mermaid
 flowchart LR
     User --> Client
-    Client --> AI[AI Processing: Gemini + LangChain]
-    Client --> Terminal[Terminal Server]
-    Client --> Filesystem[Filesystem Server]
-    Client --> Memory[Memory Server]
+    Client --> AI[AI Processing]
+    Client --> Terminal[Terminal]
+    Client --> Filesystem[Filesystem]
+    Client --> Memory[Memory]
 ```
 
 **Core Components:**
