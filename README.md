@@ -60,21 +60,21 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    Root[mcp/] --> Clients[clients/]
-    Root --> Servers[servers/]
-    Root --> Workspace[workspace/]
+    A[mcp] --> B[clients]
+    A --> C[servers]
+    A --> D[workspace]
     
-    Clients --> ClientDir[mcp-client/]
-    ClientDir --> Main["main.py"]
-    ClientDir --> LangChain["langchain_mcp_client_wconfig.py"]
-    ClientDir --> Config["theailanguage_config.json"]
-    ClientDir --> Env[".env"]
+    B --> E[mcp-client]
+    E --> F[main.py]
+    E --> G[client.py]
+    E --> H[config.json]
+    E --> I[.env]
     
-    Servers --> Terminal["terminal_server/"]
-    Terminal --> TerminalFile["terminal_server.py"]
+    C --> J[terminal]
+    J --> K[server.py]
     
-    Workspace --> Memory["memory.json"]
-    Workspace --> Notes["notes.txt"]
+    D --> L[memory.json]
+    D --> M[notes.txt]
 ```
 
 **Key Files:**
