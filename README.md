@@ -3,19 +3,12 @@
 ## 🚀 System Overview
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f0f0f0', 'nodeTextColor': '#333', 'edgeLabelBackground': '#fff'}}}%%
 flowchart LR
-    A[User] --> B[Client]
-    B --> C[AI Processing\n(Gemini + LangChain)]
-    B --> D[Terminal Server]
-    B --> E[Filesystem Server]
-    B --> F[Memory Server]
-    style A fill:#e1f5fe,stroke:#333
-    style B fill:#e8f5e9,stroke:#333
-    style C fill:#fff3e0,stroke:#333
-    style D fill:#f3e5f5,stroke:#333 
-    style E fill:#e0f7fa,stroke:#333
-    style F fill:#f1f8e9,stroke:#333
+    User --> Client
+    Client --> AI[AI Processing\nGemini + LangChain]
+    Client --> Terminal[Terminal Server]
+    Client --> Filesystem[Filesystem Server]
+    Client --> Memory[Memory Server]
 ```
 
 **Core Components:**
@@ -33,23 +26,22 @@ flowchart LR
 ## 📂 File Structure
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f0f0f0', 'nodeTextColor': '#333', 'edgeLabelBackground': '#fff'}}}%%
 flowchart TD
-    A[mcp/] --> B[clients/]
-    A --> C[servers/]
-    A --> D[workspace/]
+    Root[mcp/] --> Clients[clients/]
+    Root --> Servers[servers/]
+    Root --> Workspace[workspace/]
     
-    B --> E[mcp-client/]
-    E --> F["📄 main.py"]
-    E --> G["📄 langchain_mcp_client_wconfig.py"]
-    E --> H["📄 theailanguage_config.json"]
-    E --> I["🔒 .env"]
+    Clients --> ClientDir[mcp-client/]
+    ClientDir --> Main[main.py]
+    ClientDir --> LangChain[langchain_mcp_client_wconfig.py]
+    ClientDir --> Config[theailanguage_config.json]
+    ClientDir --> Env[.env]
     
-    C --> J[terminal_server/]
-    J --> K["📄 terminal_server.py"]
+    Servers --> Terminal[terminal_server/]
+    Terminal --> TerminalFile[terminal_server.py]
     
-    D --> L["📄 memory.json"]
-    D --> M["📄 notes.txt"]
+    Workspace --> Memory[memory.json]
+    Workspace --> Notes[notes.txt]
 ```
 
 **Key Files:**
@@ -61,32 +53,47 @@ flowchart TD
 - `workspace/memory.json`: Persistent memory storage
 - `workspace/notes.txt`: System notes
 
-**File Types:**
-- Python (60%): Main application logic
-- JSON (20%): Configuration files
-- Text (15%): Documentation and notes
-- Other (5%): Miscellaneous files
+**File Type Breakdown:**
+
+- **Python Files (60%)**:
+  - Core application logic and business rules
+  - Server implementations and client applications
+  - Includes both synchronous and asynchronous code
+  - Follows PEP 8 style guidelines
+
+- **JSON Files (20%)**:
+  - Configuration files for servers and services
+  - API request/response schemas
+  - Persistent data storage format
+  - Strict schema validation enforced
+
+- **Text Files (15%)**:
+  - System documentation (READMEs, guides)
+  - Developer notes and annotations
+  - Temporary data storage
+  - Plaintext logs and outputs
+
+- **Other Formats (5%)**:
+  - Environment files (.env)
+  - Git ignore patterns
+  - License information
+  - Build configuration files
 
 ## 🔌 Client Components
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f0f0f0', 'nodeTextColor': '#333', 'edgeLabelBackground': '#fff'}}}%%
 flowchart TD
-    A[User Input] --> B[Client]
-    B --> C{Request Type?}
-    C -->|Command| D[Terminal Server]
-    C -->|File Operation| E[Filesystem Server]
-    C -->|Memory Access| F[Memory Server]
-    C -->|AI Query| G[Gemini Processing]
-    D --> H[Response]
-    E --> H
-    F --> H
-    G --> H
-    H --> I[User Output]
-    style A fill:#e1f5fe,stroke:#333
-    style B fill:#e8f5e9,stroke:#333
-    style C fill:#fff3e0,stroke:#333
-    style H fill:#f1f8e9,stroke:#333
+    Input[User Input] --> Client
+    Client --> Decision{Request Type?}
+    Decision -->|Command| Terminal
+    Decision -->|File| Filesystem
+    Decision -->|Memory| Storage
+    Decision -->|AI| Gemini
+    Terminal --> Response
+    Filesystem --> Response
+    Storage --> Response
+    Gemini --> Response
+    Response --> Output[User Output]
 ```
 
 ### Main Client Files:
@@ -132,19 +139,18 @@ THEAILANGUAGE_CONFIG=clients/mcp-client/theailanguage_config.json
 ## 🖥️ Server Components
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f0f0f0', 'nodeTextColor': '#333', 'edgeLabelBackground': '#fff'}}}%%
 classDiagram
     class TerminalServer {
-        +workspace_path: str
+        +workspace_path: String
         +run_command()
         +validate_command()
         +execute_command()
     }
+    TerminalServer --> FastMCP : "uses"
     class FastMCP {
         +tool_decorator()
         +stdio_transport()
     }
-    TerminalServer --> FastMCP : uses
 ```
 
 ### Terminal Server
