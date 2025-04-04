@@ -174,15 +174,15 @@ THEAILANGUAGE_CONFIG=clients/mcp-client/theailanguage_config.json
 ```mermaid
 classDiagram
     class TerminalServer {
-        +workspace_path: String
-        +run_command()
-        +validate_command()
-        +execute_command()
+        +path: String
+        +run()
+        +validate() 
+        +execute()
     }
-    TerminalServer --> FastMCP : "uses"
+    TerminalServer --|> FastMCP
     class FastMCP {
-        +tool_decorator()
-        +stdio_transport()
+        +decorate()
+        +transport()
     }
 ```
 
