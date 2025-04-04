@@ -1,4 +1,37 @@
-# MCP System Documentation
+# Model Context Protocol (MCP)
+
+MCP is an open protocol that standardizes how applications provide context to LLMs - think of it like USB-C for AI applications. It enables seamless connection between AI models and various data sources/tools.
+
+## 🔌 Why MCP?
+
+MCP helps build agents and complex workflows on top of LLMs by providing:
+- Pre-built integrations for your LLM to plug into
+- Flexibility to switch between LLM providers
+- Secure data handling best practices
+- Standardized interface for AI applications
+
+## 🏗️ Core Components
+
+```mermaid
+flowchart LR
+    Host[MCP Host\n(Claude, IDEs, Tools)] --> Client[MCP Client]
+    Client --> ServerA[MCP Server A]
+    Client --> ServerB[MCP Server B]
+    Client --> ServerC[MCP Server C]
+    ServerA --> DataA[Local Data Source A]
+    ServerB --> DataB[Local Data Source B] 
+    ServerC --> APIC[Remote Service API]
+```
+
+1. **MCP Hosts**: Applications (like Claude Desktop, IDEs) that need AI context
+2. **MCP Clients**: Protocol handlers that manage server connections
+3. **MCP Servers**: Lightweight programs exposing specific capabilities:
+   - Terminal Server: Execute commands
+   - Filesystem Server: Access local files
+   - Memory Server: Persistent data storage
+4. **Data Sources**:
+   - Local: Files, databases on your machine
+   - Remote: Web APIs and cloud services
 
 ## 🚀 System Overview
 
@@ -203,7 +236,7 @@ classDiagram
 ### Installation Steps
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/modelcontextprotocol/mcp.git
+   git clone https://github.com/Techiral/mcp.git
    cd mcp
    ```
 
